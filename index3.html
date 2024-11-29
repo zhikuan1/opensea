@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Waitlist</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    .logo {
+      width: 80px;
+      margin: 0 auto 20px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+      background: #2a2a2a;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .input-container input {
+      background: none;
+      border: none;
+      color: white;
+      outline: none;
+      flex: 1;
+    }
+    .input-container button {
+      background: #2081e2;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .divider {
+      margin: 20px 0;
+      position: relative;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #444;
+    }
+    .divider::before {
+      left: 0;
+    }
+    .divider::after {
+      right: 0;
+    }
+    .divider span {
+      background: #1a1a1a;
+      padding: 0 10px;
+      color: #aaa;
+    }
+    .wallet-list {
+      text-align: left;
+    }
+    .wallet-item {
+      background: #2a2a2a;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .wallet-item img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OpenSea_icon.svg/512px-OpenSea_icon.svg.png" alt="OpenSea Logo" class="logo">
+    <h1>Join the Waitlist</h1>
+    <div class="input-container">
+      <input type="email" placeholder="Continue with email">
+      <button>&rarr;</button>
+    </div>
+    <div class="divider"><span>or connect a wallet</span></div>
+    <div class="wallet-list">
+      <div class="wallet-item" onclick="connectMetaMask()">
+        <img src="https://metamask.io/images/favicon-32x32.png" alt="MetaMask">
+        MetaMask
+      </div>
+      <div class="wallet-item">
+        <img src="https://static.coinbase.com/favicon.ico" alt="Coinbase Wallet">
+        Coinbase Wallet
+      </div>
+      <div class="wallet-item">
+        <img src="https://walletconnect.org/walletconnect-logo.png" alt="WalletConnect">
+        WalletConnect
+      </div>
+      <div class="wallet-item">
+        More Wallet Options
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function connectMetaMask() {
+      if (typeof window.ethereum !== "undefined") {
+        ethereum.request({ method: "eth_requestAccounts" })
+          .then(accounts => {
+            alert(Connected to wallet: ${accounts[0]});
+          })
+          .catch(error => {
+            console.error(error);
+            alert("Could not connect to MetaMask.");
+          });
+      } else {
+        alert("MetaMask is not installed. Please install it to continue.");
+      }
+    }
+  </script>
+</body>
+</html>
